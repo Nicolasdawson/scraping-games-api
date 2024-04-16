@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 app = FastAPI()
-from Domain.JuegosServices import getJuegos as getJuegosService, postJuegosMasivo, postTiendaJuegosService
+from domain.juegosServices import getJuegos as getJuegosService, postJuegosMasivo, postTiendaJuegosService
 from typing import Optional
 import logging
 

@@ -105,46 +105,45 @@ async def postJuegosMasivo(filtro: dict):
 
     return {"message": "Data fetching and processing completed"}
 
-async def postTiendaJuegosService(tiendaId: str):
-
-    url = 'https://www.todojuegos.cl/Productos/PS5/_Juegos/Default.asp?ListMaxShow=50&ListOrderBy=&offset='
-    response = requests.get(url)
-
-    response.encoding = 'windows-1252'
-
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    games_data = []
-    for tr in soup.find_all('tr'):
-
-        # Find the link object
-        linkObj = tr.find('a', style='font-size:18px; font-weight:bold;')
-        if linkObj:
-            if(linkObj['href'].startswith('//www.todojuegos.cl/Productos/PS5')):
-                link = 'https:' + linkObj['href']
-                title = linkObj.text
-
-                price_tag = tr.find('p', style='color:#FF0000; font-size:20px; font-weight:bolder;')
-                if price_tag:
-                    price = price_tag.text.strip()
-
-                    games_data.append({
-                        'title': title,
-                        'link': link,
-                        'price': price
-                    })
-
-    for game in games_data:
-        print(f"Title: {game['title']}, Link: {game['link']}, Price: {game['price']}")
-
-    ## ir a buscar la tienda a bd
-
-    ## ir a buscar la configuracion a la bd
-
-    ## ir a buscar el link de la tienda
-
-    ## empezar a iterar por plataforma
-
-    ## comparar el nombre del titulo con alguno que tenga en bd
-
-    return {"message": "Data fetching and processing completed"}
+# async def postTiendaJuegosService(tiendaId: str):
+#
+#     url = 'https://www.todojuegos.cl/Productos/PS5/_Juegos/Default.asp?ListMaxShow=50&ListOrderBy=&offset='
+#     response = requests.get(url)
+#
+#     response.encoding = 'windows-1252'
+#
+#     soup = BeautifulSoup(response.text, 'html.parser')
+#
+#     games_data = []
+#     for tr in soup.find_all('tr'):
+#
+#         linkObj = tr.find('a', style='font-size:18px; font-weight:bold;')
+#         if linkObj:
+#             if(linkObj['href'].startswith('//www.todojuegos.cl/Productos/PS5')):
+#                 link = 'https:' + linkObj['href']
+#                 title = linkObj.text
+#
+#                 price_tag = tr.find('p', style='color:#FF0000; font-size:20px; font-weight:bolder;')
+#                 if price_tag:
+#                     price = price_tag.text.strip()
+#
+#                     games_data.append({
+#                         'title': title,
+#                         'link': link,
+#                         'price': price
+#                     })
+#
+#     for game in games_data:
+#         print(f"Title: {game['title']}, Link: {game['link']}, Price: {game['price']}")
+#
+#     ## ir a buscar la tienda a bd
+#
+#     ## ir a buscar la configuracion a la bd
+#
+#     ## ir a buscar el link de la tienda
+#
+#     ## empezar a iterar por plataforma
+#
+#     ## comparar el nombre del titulo con alguno que tenga en bd
+#
+#     return {"message": "Data fetching and processing completed"}
