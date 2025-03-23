@@ -1,17 +1,17 @@
 from fastapi import FastAPI, HTTPException
 app = FastAPI()
-from domain.juegosServices import getJuegos as getJuegosService, postJuegosMasivo, postTiendaJuegosService
+from Domain.JuegosServices import getJuegos as getJuegosService, postJuegosMasivo
 from typing import Optional
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-@app.get("/tiendas/{tiendaId}")
-async def postTiendaJuegos(tiendaId):
-    try:
-        return await postTiendaJuegosService(tiendaId)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+#@app.get("/tiendas/{tiendaId}")
+#async def postTiendaJuegos(tiendaId):
+#    try:
+#        return await postTiendaJuegosService(tiendaId)
+#    except Exception as e:
+#        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/juegos")
 async def getJuegos(plataforma: Optional[str],
